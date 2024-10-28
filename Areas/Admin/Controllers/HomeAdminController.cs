@@ -12,6 +12,7 @@ namespace BaiThiTHDotNet.Areas.Admin.Controllers
     public class HomeAdminController : Controller
     {
         QlbanVaLiContext db = new QlbanVaLiContext();
+
         [Route("")]
         [Route("index")]
         public IActionResult Index()
@@ -30,6 +31,8 @@ namespace BaiThiTHDotNet.Areas.Admin.Controllers
 
             return View(lst);
         }
+
+
         [Route("ThemSanPhamMoi")]
         [HttpGet]
 

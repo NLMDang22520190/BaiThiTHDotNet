@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using BaiThiTHDotNet.Models;
+using BaiThiTHDotNet.Models.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
@@ -15,7 +16,7 @@ namespace BaiThiTHDotNet.Controllers
         {
             _logger = logger;
         }
-
+        [Authentication]
         public IActionResult Index(int? page)
         {
             int pageSize = 8;
@@ -27,6 +28,7 @@ namespace BaiThiTHDotNet.Controllers
             return View(lst);
         }
 
+        [Authentication]
         public IActionResult SanPhamTheoLoai(String maLoai, int? page)
         {
 
