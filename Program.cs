@@ -1,7 +1,16 @@
+using BaiThiTHDotNet.Models;
+using BaiThiTHDotNet.Repository;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("QlbanVaLiContext");
+builder.Services.AddDbContext<QlbanVaLiContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<ILoaiSpRepository, LoaiSpRepositorycs>();
 
 var app = builder.Build();
 
