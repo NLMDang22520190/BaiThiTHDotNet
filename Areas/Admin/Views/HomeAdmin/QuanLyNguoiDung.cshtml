@@ -1,0 +1,52 @@
+﻿@using BaiThiTHDotNet.Models
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<TUser>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "QuanLyNguoiDung";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Quản Lý Người Dùng</h1>
+
+
+<p>@TempData["Message"]</p>
+<table class="table">
+    <thead>
+        <tr class="table-warning">
+            <th>
+                Tên Người Dùng
+            </th>
+
+            <th>
+                Mật Khẩu
+            </th>
+            <th>
+                Loại Người Dùng
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-success">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiUser)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager(Model, page => Url.Action("QuanLyNguoiDung", new { page }), new X.PagedList.Mvc.Core.PagedListRenderOptions()
+{
+    LiElementClasses = new List<String> { "page-item" },
+    PageClasses = new List<String> { "page-link" },
+})

@@ -126,5 +126,19 @@ namespace BaiThiTHDotNet.Areas.Admin.Controllers
             TempData["Message"] = "San pham da duoc xoa";
             return RedirectToAction("DanhMucSanPham", "HomeAdmin");
         }
+
+        [Route("quanlynguoidung")]
+        public IActionResult QuanLyNguoiDung(int? page)
+        {
+            int pageSize = 12;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+
+            var listuser = db.TUsers.AsNoTracking().OrderBy(x => x.Username);
+            PagedList<TUser> lst = new PagedList<TUser>(listuser, pageNumber, pageSize);
+
+            return View(lst);
+        }
+
+
     }
 }
